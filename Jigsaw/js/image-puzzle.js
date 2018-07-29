@@ -1,6 +1,6 @@
 ﻿var timerFunction;
 var pos=0 ;
-
+var answer = window.prompt("Enter Username");
 var imagePuzzle = {
     stepCount: 0,
     startTime: new Date().getTime(),
