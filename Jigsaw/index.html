@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Image Puzzle</title>
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/image-puzzle.css" rel="stylesheet" />
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <!--<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>-->
+    <script src="jquery-ui-1.12.1/jquery-ui.js"></script>
+    <script src="js/image-puzzle.js"></script>
+</head>
+<body>
+<div id="backgorund"><img src="images/image.jpg" width="100%" height="100%"></div>
+    <div id="collage">
+        <h1>Jigsaw Puzzle</h1>
+
+        <div id="playPanel" style="padding:5px;">
+
+            <div style="display:inline-block; margin:auto; width:95%; vertical-align:top;">
+                <div id="levelsetter">Select the level</div>
+                <ul id="sortable" class="sortable" style="display: none"></ul>
+                <div id="actualImageBox">
+                    <div id="stepBox" style="display: none">
+                        <div>Steps:</div><div class="stepCount">0</div>
+                    </div>
+                    <div id="timeBox" style="display: none">
+                        Time: <span id="timerPanel"></span> secs
+                    </div>
+                    <img id="actualImage" style="display: none">
+                    <div id="Re-arrange" style="display: none"><h3>Re-arrange to create a picture like this</h3></div>
+                    <p id="levelPanel">
+                        <input type="radio" name="level" id="easy" value="3" /> <label for="easy">Easy</label>
+                        <input type="radio" name="level" id="medium" value="4" /> <label for="medium">Medium</label>
+                        <input type="radio" name="level" id="hard" value="5" /> <label for="hard">Hard</label>
+                    </p>
+                    <div id="Buttons"style="display: none">
+
+                        <button id="newPhoto" type="button" class="btn" style="font-size: large">Change Picture</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="gameOver" style="display: none">
+            <div style="background-color: aliceblue; padding: 5px 10px 20px 10px; text-align: center;margin-left: 20px ">
+                <h2 style="text-align:center">Game Over!!</h2>
+                Congratulations!! <br /> You have completed this picture.
+                <br />
+                Steps: <span class="stepCount">0</span> steps.
+                <br />
+                Time Taken: <span class="timeCount">0</span> seconds<br />
+                <div>
+                    <button type="button" onclick="window.location.reload(true);">Play Again</button>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            var images = [
+                { src: 'images/image1.jpg'} ,{src: 'images/image5.jpg' },{src: 'images/image8.jpg'} ,{src: 'images/image11.jpg'} ,
+                {src: 'images/image2.jpg' },{src: 'images/image6.jpg' },{src: 'images/image9.jpg' },{src: 'images/image12.jpg' },
+                {   src: 'images/image3.jpg' },{src: 'images/image7.jpg' },{src: 'images/image10.jpg'} ,{src: 'images/image13.jpg'} ,
+                {   src: 'images/image4.jpg' }
+
+            ];
+
+            $(function () {
+                var gridSize = $('#levelPanel :radio:checked').val();
+               //  imagePuzzle.startGame(images, gridSize,1);
+                $('#newPhoto').click(function () {
+                    var gridSize = $('#levelPanel :radio:checked').val();  // Take the updated gridSize from UI.
+                    imagePuzzle.startGame(images, gridSize,2);
+                });
+
+                $('#levelPanel :radio').change(function (e) {
+                    var gridSize = $(this).val();
+                    imagePuzzle.startGame(images, gridSize,3);
+                });
+            });
+            function rules() {
+                alert('Re arrange the image parts in a way that it correctly forms the picture. \nThe no. of steps taken will be counted.');
+            }
+
+        </script>
+    </div>
+
+</body>
+</html>
